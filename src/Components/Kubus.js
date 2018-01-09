@@ -9,7 +9,12 @@ class Kubus extends Component {
       this.props.vertices[0][1],
       "L",
       this.props.vertices[1][0],
-      this.props.vertices[1][1]
+      this.props.vertices[1][1],
+      this.props.vertices[1][2],
+      this.props.vertices[1][3],
+      this.props.vertices[1][4],
+      this.props.vertices[1][5],
+      "z"
     ].join(" ");
     return (
       <path
