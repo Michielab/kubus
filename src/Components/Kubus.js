@@ -10,21 +10,24 @@ class Kubus extends Component {
       "L",
       this.props.vertices[1][0],
       this.props.vertices[1][1],
-      this.props.vertices[1][2],
-      this.props.vertices[1][3],
-      this.props.vertices[1][4],
-      this.props.vertices[1][5],
+      this.props.vertices[2][0],
+      this.props.vertices[2][1],
+      this.props.vertices[3][0],
+      this.props.vertices[3][1],
       "z"
     ].join(" ");
     return (
       <path
+        className="kubus"
+        id={this.props.className}
         d={pathData}
         vertices={this.props.vertices}
         fill="none"
-        strokeWidth="2"
+        strokeWidth="1"
         stroke="white"
       />
     );
+    // opacity="0.1"
   }
 }
 

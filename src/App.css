@@ -24,6 +24,14 @@
 
 .kubus-container {
   background-color: black;
+  -webkit-perspective: 1600px;
+  -webkit-perspective-origin: 50% -240px;
+}
+
+.kubus {
+  position: relative;
+  width: 200px;
+  transform-style: preserve-3d;
 }
 
 .slidecontainer {
