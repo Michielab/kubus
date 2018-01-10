@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Kubus from "./Kubus";
+import * as FontAwesome from "react-icons/lib/fa";
 
 class Home extends Component {
   constructor(props) {
@@ -7,54 +8,118 @@ class Home extends Component {
     this.state = {
       slideValue: 1,
       rotateValue: 1,
-      front: [[200, 400], [200, 600], [400, 600], [400, 400]]
+      rotateValueX: 1,
+      front: [
+        [200, 400, 400],
+        [200, 600, 400],
+        [400, 600, 400],
+        [400, 400, 400],
+        [200, 400, 600],
+        [200, 600, 600],
+        [400, 600, 600],
+        [400, 400, 600]
+      ]
     };
   }
   adjustSize = event => {
     var x = parseInt(event.target.value);
-    console.log(typeof x);
     this.setState({
       slideValue: event.target.value,
-      front: [[200, 400], [200, 600 + x], [400 + x, 600 + x], [400 + x, 400]]
-      // back: [[300, 400], [300, 600 + x, 500 + x, 600 + x, 500 + x, 400]]
+      front: [
+        [200, 400, 400],
+        [200, 600 + x, 400],
+        [400 + x, 600 + x, 400],
+        [400 + x, 400, 400],
+        [200, 400, 600 + x],
+        [200, 600 + x, 600 + x],
+        [400 + x, 600 + x, 600 + x],
+        [400 + x, 400, 600 + x]
+      ]
     });
   };
 
   rotate = event => {
-    this.rotateX(95);
-    // var d = Math.hypot(y - meanY, x - meanX);
-    // console.log(array);
-    // var y = parseInt(event.target.value);
-    // console.log(typeof y);
-    // this.setState({
-    //   slideValue: event.target.value,
-    //   rotateValue: y
-    //   // front: [[200, 400], [200, 600, 400, 600, 400, 400]]
-    // });
+    this.rotateY(20);
   };
-  rotateX = radius => {
-    var meanX =
-      (this.state.front[0][0] +
-        this.state.front[1][0] +
-        this.state.front[2][0] +
-        this.state.front[3][0]) /
-      this.state.front.length;
+
+  rotateY = radians => {
     var meanY =
       (this.state.front[0][1] +
         this.state.front[1][1] +
         this.state.front[2][1] +
-        this.state.front[3][1]) /
+        this.state.front[3][1] +
+        this.state.front[4][1] +
+        this.state.front[5][1] +
+        this.state.front[6][1] +
+        this.state.front[7][1]) /
+      this.state.front.length;
+
+    var meanZ =
+      (this.state.front[0][2] +
+        this.state.front[1][2] +
+        this.state.front[2][2] +
+        this.state.front[3][2] +
+        this.state.front[4][2] +
+        this.state.front[5][2] +
+        this.state.front[6][2] +
+        this.state.front[7][2]) /
       this.state.front.length;
 
     var front = this.state.front.map((point, index) => {
-      var x = point[0] - meanX;
+      var z = point[2] - meanZ;
       var y = point[1] - meanY;
-      var d = Math.hypot(point[1] - meanY, point[0] - meanX);
-      var angle = Math.atan2(point[1] - meanY, point[0] - meanX) + radius;
-      return [meanX + d * Math.cos(angle), meanY + d * Math.sin(angle)];
+      var d = Math.sqrt(y * y + z * z);
+      var angle = Math.atan2(y, z) + radians;
+      return [
+        point[0],
+        meanY + d * Math.sin(angle),
+        meanZ + d * Math.cos(angle)
+      ];
     });
     this.setState({ front: front });
   };
+
+  rotate2 = event => {
+    this.rotateX(20);
+  };
+
+  rotateX = radians => {
+    var meanX =
+      (this.state.front[0][0] +
+        this.state.front[1][0] +
+        this.state.front[2][0] +
+        this.state.front[3][0] +
+        this.state.front[4][0] +
+        this.state.front[5][0] +
+        this.state.front[6][0] +
+        this.state.front[7][0]) /
+      this.state.front.length;
+
+    var meanZ =
+      (this.state.front[0][2] +
+        this.state.front[1][2] +
+        this.state.front[2][2] +
+        this.state.front[3][2] +
+        this.state.front[4][2] +
+        this.state.front[5][2] +
+        this.state.front[6][2] +
+        this.state.front[7][2]) /
+      this.state.front.length;
+
+    var front = this.state.front.map((point, index) => {
+      var z = point[2] - meanZ;
+      var x = point[0] - meanX;
+      var d = Math.sqrt(x * x + z * z);
+      var angle = Math.atan2(x, z) + radians;
+      return [
+        meanX + d * Math.sin(angle),
+        point[1],
+        meanZ + d * Math.cos(angle)
+      ];
+    });
+    this.setState({ front: front });
+  };
+
   render() {
     return (
       <div className="home-container">
@@ -76,14 +141,16 @@ class Home extends Component {
           <input
             type="range"
             min="1"
-            max="300"
+            max="200"
             value={this.state.slideValue}
             className="slider"
             id="myRange"
             onChange={this.adjustSize}
           />
+          <button onClick={this.rotate2}>y</button>
+          <button onClick={this.rotate}>X</button>
         </div>
-        <div className="slidecontainer">
+        {/* <div className="slidecontainer">
           <input
             type="range"
             min="0"
@@ -93,7 +160,8 @@ class Home extends Component {
             id="myRangeRotate"
             onChange={this.rotate}
           />
-        </div>
+        </div> */}
+        {/* <button onClick={this.rotate2}>y</button> */}
       </div>
     );
   }
