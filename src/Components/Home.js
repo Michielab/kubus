@@ -22,107 +22,16 @@ class Home extends Component {
 
   adjustSize = event => {
     var x = parseInt(event.target.value);
-    var xS = parseInt(this.state.slideValue);
-    console.log(x);
     var kubus = [
-      [200, 400, 400],
-      [200, 600 + x, 400],
-      [400 + x, 600 + x, 400],
-      [400 + x, 400, 400],
-      [200, 400, 600 + x],
-      [200, 600 + x, 600 + x],
-      [400 + x, 600 + x, 600 + x],
-      [400 + x, 400, 600 + x]
+      [700, 200, 400],
+      [700, 500 + x, 400],
+      [1000 + x, 500 + x, 400],
+      [1000 + x, 200, 400],
+      [700, 200, 700 + x],
+      [700, 500 + x, 700 + x],
+      [1000 + x, 500 + x, 700 + x],
+      [1000 + x, 200, 700 + x]
     ];
-
-    if (x < this.state.slideValue) {
-      kubus = [
-        [
-          this.state.kubus[0][0],
-          this.state.kubus[0][1],
-          this.state.kubus[0][2]
-        ],
-        [
-          this.state.kubus[1][0],
-          this.state.kubus[1][1] - xS,
-          this.state.kubus[1][2]
-        ],
-        [
-          this.state.kubus[2][0] - xS,
-          this.state.kubus[2][1] - xS,
-          this.state.kubus[2][2]
-        ],
-        [
-          this.state.kubus[3][0] - xS,
-          this.state.kubus[3][1],
-          this.state.kubus[3][2]
-        ],
-        [
-          this.state.kubus[4][0],
-          this.state.kubus[4][1],
-          this.state.kubus[4][2] - xS
-        ],
-        [
-          this.state.kubus[5][0],
-          this.state.kubus[5][1] - xS,
-          this.state.kubus[5][2] - xS
-        ],
-        [
-          this.state.kubus[6][0] - xS,
-          this.state.kubus[6][1] - xS,
-          this.state.kubus[6][2] - xS
-        ],
-        [
-          this.state.kubus[7][0] - xS,
-          this.state.kubus[7][1],
-          this.state.kubus[7][2] - xS
-        ]
-      ];
-    } else {
-      kubus = [
-        [
-          this.state.kubus[0][0],
-          this.state.kubus[0][1],
-          this.state.kubus[0][2]
-        ],
-        [
-          this.state.kubus[1][0],
-          this.state.kubus[1][1] + x,
-          this.state.kubus[1][2]
-        ],
-        [
-          this.state.kubus[2][0] + x,
-          this.state.kubus[2][1] + x,
-          this.state.kubus[2][2]
-        ],
-        [
-          this.state.kubus[3][0] + x,
-          this.state.kubus[3][1],
-          this.state.kubus[3][2]
-        ],
-        [
-          this.state.kubus[4][0],
-          this.state.kubus[4][1],
-          this.state.kubus[4][2] + x
-        ],
-        [
-          this.state.kubus[5][0],
-          this.state.kubus[5][1] + x,
-          this.state.kubus[5][2] + x
-        ],
-        [
-          this.state.kubus[6][0] + x,
-          this.state.kubus[6][1] + x,
-          this.state.kubus[6][2] + x
-        ],
-        [
-          this.state.kubus[7][0] + x,
-          this.state.kubus[7][1],
-          this.state.kubus[7][2] + x
-        ]
-      ];
-    }
-
     this.setState({ slideValue: event.target.value, kubus: kubus });
   };
 
@@ -188,7 +97,7 @@ class Home extends Component {
             <input
               type="range"
               min="1"
-              max="20"
+              max="100"
               value={this.state.slideValue}
               className="slider"
               id="myRange"
