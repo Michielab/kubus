@@ -54,12 +54,12 @@ class Kubus extends Component {
     return (
       <path
         className="kubus"
-        id={this.props.className}
         d={pathData}
         vertices={this.props.vertices}
         fill="none"
-        strokeWidth="3"
+        strokeWidth="5"
         stroke="white"
+        opacity="0.8"
       />
     );
   }

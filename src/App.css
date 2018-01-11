@@ -22,38 +22,17 @@
   font-size: large;
 }
 
-.kubus-container {
-  background-color: black;
-  width: 100%;
-  height: 100%;
-}
-
-.kubus {
-  position: relative;
-}
-
-.slidecontainer {
-  color: white;
-}
-
 .home-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-content: center;
-  flex-wrap: wrap;
-  overflow: hidden;
-  position: relative;
+  justify-content: center;
 }
 
-.super-crazy-colors {
-  background-color: white;
-}
-
-.arrows {
-  position: relative;
-  width: 80px;
-  margin-top: 30px;
-  margin-left: 20px;
+.kubus-container {
+  display: block;
+  width: 100%;
+  background-color: black;
 }
 
 .arrow-left {
@@ -80,11 +59,28 @@
 }
 
 .controls-container {
-  position: absolute;
+  margin: -20px;
+  background-color: black;
+  height: 200px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-content: center;
-  bottom: 50%;
-  margin-left: 1%;
+}
+
+.arrows {
+  display: block;
+  position: relative;
+  width: 80px;
+  margin-left: 100px;
+  margin-top: 40px;
+}
+
+.slidecontainer {
+  color: white;
+  width: 15%;
+}
+
+.slider {
+  border-radius: 5%;
 }
