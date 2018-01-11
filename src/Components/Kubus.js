@@ -58,7 +58,7 @@ class Kubus extends Component {
         d={pathData}
         vertices={this.props.vertices}
         fill="none"
-        strokeWidth="1"
+        strokeWidth="3"
         stroke="white"
       />
     );
